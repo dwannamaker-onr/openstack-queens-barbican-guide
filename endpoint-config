@@ -1,0 +1,3 @@
+| 3866ab6b4f6e4e4091ddb94f74e108eb | RegionOne | barbican     | key-manager  | True    | internal  | http://barbican:9311                           |
+| 3fa3308a9edf4cfa88e99606585bc15b | RegionOne | barbican     | key-manager  | True    | public    | http://barbican:9311                           |
+| 840b6ebef31d4f94933ef6ef3161b897 | RegionOne | barbican     | key-manager  | True    | admin     | http://barbican:9311                           |

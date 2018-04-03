@@ -1,0 +1,5 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 controller
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6 controller
+
+172.16.9.167 barbican
+172.16.9.166 controller controller.localdomain
