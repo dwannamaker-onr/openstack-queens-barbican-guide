@@ -138,9 +138,21 @@ password = barbicanpassword
 ```
 
 # Configure Cinder to use Barbican
-
+(see https://docs.openstack.org/cinder/latest/configuration/block-storage/volume-encryption.html)
 ## Modify cinder.conf for Cinder-API
+1. Search for auth_endpoint under the [barbican] section and add
+```auth_endpoint = http://localhost:35357/v3```
+2. Search for [key_manager] section and add
+```backend = barbican```
+3. Restart cinder-api: ```systemctl restart openstack-cinder-api```
+4. Install cryptsetup tools: ```yum -y install cryptsetup```
 
-
-# Configure Nova to use Barbican
-
+# Modify the nova.conf for Nova-Compute
+1. Search for [key_manager] section and add
+```backend = barbican```
+2. Comment out the backend=nova.keymgr.conf_key_mgr.ConfKeyManager:
+```
+backend=barbican
+#backend=nova.keymgr.conf_key_mgr.ConfKeyManager
+```
+3. Restart nova-compute: ```systemctl restart openstack-nova-compute```
