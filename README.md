@@ -77,7 +77,7 @@ GRANT ALL PRIVILEGES ON barbican.* TO 'barbican'@'localhost' \
   IDENTIFIED BY 'barbican-db-pass';
 ```
 ```
-GRANT ALL PRIVILEGES ON barbican.* TO 'barbican'@'%' \
+GRANT ALL PRIVILEGES ON barbican.* TO 'barbican'@'barbican' \
   IDENTIFIED BY 'barbican-db-pass';
 ```
 4. Exit MySQL Client ```\q```
