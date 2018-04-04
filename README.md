@@ -7,24 +7,22 @@
 4. yum -y open-vm-tools
 5. Shut Down and Save Image as CentOS7 Base
 
-##Create RDO AIO Controller
+## Create RDO AIO Controller
 1. Create Linked-Clone system with at least 2 CPUs and 12GB of RAM
-2. yum -y install centos-release-openstack-queens
-3. yum -y install python-setuptools
-4. Disable selinux enforcement: setenforce 0
-5. Make Selinux Change Permanent:  sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config
-6. systemctl disable NetworkManager
-7. systemctl stop NetworkManager
-8. systemctl enable network
-9. systemctl disable firewalld
-10. systemctl stop firewalld
-11. Edit /etc/sysconfig/network-scripts/ifcfg-ens## and set onboot=true
-    1. Optional set Static IP settings
-12. Bring up the legacy interface = ifup ens##
-13. Verify Internet Connectivity = ping 8.8.8.8
-14. hostnamectl set-hostname controller
-15. yum install -y openstack-packstack
-16. packstack --allinone
+2. Edit __/etc/sysconfig/network-scripts/ifcfg-ens##__ and set __onboot=yes__
+    a. _Optional: set Static IP settings_
+3. ```yum -y install centos-release-openstack-queens```
+4. ```yum -y install python-setuptools```
+5. Disable selinux enforcement: ```setenforce 0```
+6. Make Selinux Change Permanent:  ```sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config```
+7. ```systemctl disable NetworkManager```
+8. ```systemctl stop NetworkManager```
+9. ```systemctl enable network```
+10. ```systemctl disable firewalld```
+11. ```systemctl stop firewalld```
+12. ```hostnamectl set-hostname controller```
+13. ```yum install -y openstack-packstack```
+14. ```packstack --allinone```
 
 # Configuring OpenStack Hooks
 
