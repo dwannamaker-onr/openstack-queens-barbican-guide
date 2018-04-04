@@ -1,6 +1,6 @@
 # Installing OpenStack Single VM PoC using RDO
 
-##Create Base Image:
+## Create Base Image:
 1. Create VM in VirtualBox or Fusion and enable Nested Virtualization
 2. Install Latest CentOS-7 x86_64 Minimal from ISO
 3. yum -y update
