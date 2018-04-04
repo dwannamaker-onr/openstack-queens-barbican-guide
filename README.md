@@ -71,13 +71,16 @@ In this PoC we are going to use a separate database for Barbican.  Barbican's da
 ### Configure Barbican's Database and DB User
 1. ```mysql -u root```
 2. ```CREATE DATABASE barbican;```
-3. ```
+3. Add barbican user and give it full permissions to the barbican DB:
+```
 GRANT ALL PRIVILEGES ON barbican.* TO 'barbican'@'localhost' \
   IDENTIFIED BY 'barbican-db-pass';
+```
+```
 GRANT ALL PRIVILEGES ON barbican.* TO 'barbican'@'%' \
   IDENTIFIED BY 'barbican-db-pass';
-exit;
-  ```
+```
+4. Exit MySQL Client ```\q```
 
 ### Install Memcached
 1. ```yum -y install memcached```
