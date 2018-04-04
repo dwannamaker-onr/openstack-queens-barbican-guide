@@ -44,8 +44,16 @@ openstack endpoint create --region RegionOne key-manager admin http://barbican:9
 ## Configure Networking:
 1. Edit __/etc/sysconfig/network-scripts/ifcfg-ens##__ and set __onboot=yes__ _(Optional: set Static IP settings)_
 2. ifup ens##
-3. Add Barbican IP address to /etc/hosts on controller and barbican as ```<barbican.ip.goes.here>    barbican barbican.localdomain``` It wouldn't hurt to add controller to both systems /etc/hosts as well.
-4. Set Hostname: ```hostnamectl set-hostname barbican```
+3. Set Hostname: ```hostnamectl set-hostname barbican```
+4. Update /etc/hosts on both controller and barbican
+```
+[root@controller ~(keystone_admin)]# cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+172.16.9.168 controller controller.localdomain
+172.16.9.171 barbican barbican.localdomain
+```
 
 ## Install Barbican
 1. ```yum -y install centos-release-openstack-queens```
