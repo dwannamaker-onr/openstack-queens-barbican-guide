@@ -21,8 +21,7 @@
 11. ```systemctl stop firewalld```
 12. ```hostnamectl set-hostname controller```
 13. ```yum install -y openstack-packstack```
-14. ```packstack --allinone```
-
+14. ```packstack --allinone``` _(Optional: <a href=https://www.rdoproject.org/networking/neutron-with-existing-external-network/>Configure External Networking</a>)_
 # Configuring Barbican Keystone Hooks
 
 ```
