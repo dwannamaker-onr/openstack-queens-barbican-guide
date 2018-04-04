@@ -54,6 +54,11 @@ openstack endpoint create --region RegionOne key-manager admin http://barbican:9
 172.16.9.168 controller controller.localdomain
 172.16.9.171 barbican barbican.localdomain
 ```
+5. Disable Firewall _(Optional: Configure firewall, but this is a PoC)_
+```
+systemctl disable firewalld
+systemctl stop firewalld
+```
 
 ## Install Barbican
 1. ```yum -y install centos-release-openstack-queens```
