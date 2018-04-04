@@ -81,10 +81,6 @@ In this PoC we are going to use a separate database for Barbican.  Barbican's da
 GRANT ALL PRIVILEGES ON barbican.* TO 'barbican'@'localhost' \
   IDENTIFIED BY 'barbican-db-pass';
 ```
-```
-GRANT ALL PRIVILEGES ON barbican.* TO 'barbican'@'barbican' \
-  IDENTIFIED BY 'barbican-db-pass';
-```
 4. Exit MySQL Client ```\q```
 
 ### Install Memcached
@@ -98,7 +94,7 @@ barbican.conf.simplified:
 ```
 [DEFAULT]
 host_href = http://barbican:9311
-sql_connection = mysql+pymysql://barbican:barbican-db-pass@barbican/barbican
+sql_connection = mysql+pymysql://barbican:barbican-db-pass@localhost/barbican
 debug = false
 transport_url = rabbit://guest:guest@controller
 
