@@ -60,6 +60,30 @@ openstack endpoint create --region RegionOne key-manager admin http://barbican:9
 2. ```yum install openstack-barbican-api -y```
 
 ## Configure Barbican
+
+### Install Barbican's Local Database
+In this PoC we are going to use a separate database for Barbican.  Barbican's database should be protected in production and should not be shared with other applications, even though we're already running SQL for the controller.  
+
+1. ```yum -y install mariadb mariadb-server```
+2. ```systemctl enable mariadb-server```
+3. ```systemctl start mariadb-server```
+
+### Configure Barbican's Database and DB User
+1. ```mysql -u root```
+2. ```CREATE DATABASE barbican;```
+3. ```GRANT ALL PRIVILEGES ON barbican.* TO 'barbican'@'localhost' \
+  IDENTIFIED BY 'barbican-db-pass';
+GRANT ALL PRIVILEGES ON barbican.* TO 'barbican'@'%' \
+  IDENTIFIED BY 'barbican-db-pass';
+  exit;```
+
+### Install Memcached
+1. ```yum -y install memcached```
+2. ```systemctl enable memcached```
+3. ```systemctl start memcached```
+
+### Configure Barbican Service
+
 barbican.conf.simplified:
 ```
 [DEFAULT]
