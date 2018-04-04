@@ -159,7 +159,8 @@ backend=barbican
 
 ## Create an Encrypted Volume Type
 1. ```source keystonerc_admin```
-2. ```
+2. Create encrypted volume-type called "LUKS":
+```
 openstack volume type create --encryption-provider luks \
   --encryption-cipher aes-xts-plain64 --encryption-key-size 256 --encryption-control-location front-end LUKS
 ```
