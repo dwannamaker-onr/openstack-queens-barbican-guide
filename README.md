@@ -10,7 +10,7 @@
 ## Create RDO AIO Controller
 1. Create Linked-Clone system with at least 2 CPUs and 12GB of RAM
 2. Edit __/etc/sysconfig/network-scripts/ifcfg-ens##__ and set __onboot=yes__
-    a. _Optional: set Static IP settings_
+     a. _Optional: set Static IP settings_
 3. ```yum -y install centos-release-openstack-queens```
 4. ```yum -y install python-setuptools```
 5. Disable selinux enforcement: ```setenforce 0```
