@@ -89,8 +89,7 @@ GRANT ALL PRIVILEGES ON barbican.* TO 'barbican'@'localhost' \
 3. ```systemctl start memcached```
 
 ### Configure Barbican Service
-
-barbican.conf.simplified:
+1. Copy the following configuration to /etc/barbican/barbican.conf:  _(Rename the original for safe keeping)_
 ```
 [DEFAULT]
 host_href = http://barbican:9311
@@ -112,3 +111,36 @@ project_domain_id = default
 username = barbican
 password = barbicanpassword
 ```
+2. Enable Barbican API on Boot ```systemctl enable openstack-barbican-api```
+3. Start the Barbican API ```systemctl start openstack-barbican-api```
+4. _Optionally: Follow barbican logs with ```journalctl -fu openstack-barbican-api```
+
+# Verify Barbican is working from the Controller
+1. ```source keystonerc_admin```
+2. ```openstack secret store```
+3. New generic secret HREF should be returned, see example output:
+```
+[root@controller ~(keystone_admin)]# openstack secret store
++---------------+----------------------------------------------------------------------+
+| Field         | Value                                                                |
++---------------+----------------------------------------------------------------------+
+| Secret href   | http://barbican:9311/v1/secrets/95bb66b5-d78c-44bc-bfd4-34cf53df6947 |
+| Name          | None                                                                 |
+| Created       | 2018-04-04T22:32:47+00:00                                            |
+| Status        | ACTIVE                                                               |
+| Content types | None                                                                 |
+| Algorithm     | aes                                                                  |
+| Bit length    | 256                                                                  |
+| Secret type   | opaque                                                               |
+| Mode          | cbc                                                                  |
+| Expiration    | None                                                                 |
++---------------+----------------------------------------------------------------------+
+```
+
+# Configure Cinder to use Barbican
+
+## Modify cinder.conf for Cinder-API
+
+
+# Configure Nova to use Barbican
+
