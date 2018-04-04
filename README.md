@@ -7,7 +7,7 @@
 4. yum -y open-vm-tools
 5. Shut Down and Save Image as CentOS7 Base
 
-## Create RDO AIO Controller
+## Create RDO All-In-One OpenStack Controller
 1. Create Linked-Clone system with at least 2 CPUs and 12GB of RAM
 2. Edit __/etc/sysconfig/network-scripts/ifcfg-ens##__ and set __onboot=yes__ _(Optional: set Static IP settings)_
 3. ```yum -y install centos-release-openstack-queens```
