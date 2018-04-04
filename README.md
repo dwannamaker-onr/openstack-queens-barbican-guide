@@ -1,3 +1,31 @@
+# Installing OpenStack Single VM PoC using RDO
+
+##Create Base Image:
+1. Create VM in VirtualBox or Fusion and enable Nested Virtualization
+2. Install Latest CentOS-7 x86_64 Minimal from ISO
+3. yum -y update
+4. yum -y open-vm-tools
+5. Shut Down and Save Image as CentOS7 Base
+
+##Create RDO AIO Controller
+1. Create Linked-Clone system with at least 2 CPUs and 12GB of RAM
+2. yum -y install centos-release-openstack-queens
+3. yum -y install python-setuptools
+4. Disable selinux enforcement: setenforce 0
+5. Make Selinux Change Permanent:  sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config
+6. systemctl disable NetworkManager
+7. systemctl stop NetworkManager
+8. systemctl enable network
+9. systemctl disable firewalld
+10. systemctl stop firewalld
+11. Edit /etc/sysconfig/network-scripts/ifcfg-ens## and set onboot=true
+    1. Optional set Static IP settings
+12. Bring up the legacy interface = ifup ens##
+13. Verify Internet Connectivity = ping 8.8.8.8
+14. hostnamectl set-hostname controller
+15. yum install -y openstack-packstack
+16. packstack --allinone
+
 # Configuring OpenStack Hooks
 
 ```
