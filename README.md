@@ -26,6 +26,7 @@
 # Configuring Barbican Keystone Hooks
 
 ```
+source keystonerc_admin
 openstack user create --domain default --password-prompt barbican
 openstack role add --project services --user barbican admin
 openstack role create creator
