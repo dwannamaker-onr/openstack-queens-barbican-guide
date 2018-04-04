@@ -23,7 +23,7 @@
 13. ```yum install -y openstack-packstack```
 14. ```packstack --allinone```
 
-# Configuring OpenStack Hooks
+# Configuring Barbican Keystone Hooks
 
 ```
 openstack user create --domain default --password-prompt barbican
@@ -37,8 +37,20 @@ openstack endpoint create --region RegionOne key-manager admin http://barbican:9
 ```
 * Remember your password you'll use it in the barbican.conf
 
-yum install openstack-barbican-api -y
+# Installing Barbican API on CentOS
+(Use the base image you created earlier or just a plain and updated CentOS7 VM)
 
+## Configure Networking:
+1. Edit __/etc/sysconfig/network-scripts/ifcfg-ens##__ and set __onboot=yes__ _(Optional: set Static IP settings)_
+2. ifup ens##
+3. Add ens## IP address to /etc/hosts as ```<ip.goes.here>    barbican barbican.localdomain```
+4. Set Hostname: ```hostnamectl set-hostname barbican```
+
+## Install Barbican
+1. ```yum -y install centos-release-openstack-queens```
+2. ```yum install openstack-barbican-api -y```
+
+## Configure Barbican
 barbican.conf.simplified:
 ```
 [DEFAULT]
