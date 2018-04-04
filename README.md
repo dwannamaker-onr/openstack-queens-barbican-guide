@@ -137,7 +137,7 @@ password = barbicanpassword
 +---------------+----------------------------------------------------------------------+
 ```
 
-# Configure Cinder to use Barbican
+# Configure OpenStack Volume Encryption Support
 (see https://docs.openstack.org/cinder/latest/configuration/block-storage/volume-encryption.html)
 ## Modify cinder.conf for Cinder-API
 1. Search for auth_endpoint under the [barbican] section and add
@@ -147,7 +147,7 @@ password = barbicanpassword
 3. Restart cinder-api: ```systemctl restart openstack-cinder-api```
 4. Install cryptsetup tools: ```yum -y install cryptsetup```
 
-# Modify the nova.conf for Nova-Compute
+## Modify the nova.conf for Nova-Compute
 1. Search for [key_manager] section and add
 ```backend = barbican```
 2. Comment out the backend=nova.keymgr.conf_key_mgr.ConfKeyManager:
@@ -156,3 +156,22 @@ backend=barbican
 #backend=nova.keymgr.conf_key_mgr.ConfKeyManager
 ```
 3. Restart nova-compute: ```systemctl restart openstack-nova-compute```
+
+## Create an Encrypted Volume Type
+1. ```source keystonerc_admin```
+2. ```openstack volume type create --encryption-provider luks \
+  --encryption-cipher aes-xts-plain64 --encryption-key-size 256 --encryption-control-location front-end LUKS```
+
+## Create Unencrypted Volume
+```openstack volume create --size 1 'unencrypted volume'```
+
+## Create Encrypted Volume
+```openstack volume create --size 1 --type LUKS 'encrypted volume'```
+
+# Test Volume Encryption
+
+## Mount Unencrypted Volume and Write Data
+
+## Mount Encrypted Volume and Write Data
+
+## Check Volumes for Data
