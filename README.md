@@ -45,7 +45,7 @@ openstack endpoint create --region RegionOne key-manager admin http://barbican:9
 1. Edit __/etc/sysconfig/network-scripts/ifcfg-ens##__ and set __onboot=yes__ _(Optional: set Static IP settings)_
 2. ifup ens##
 3. Set Hostname: ```hostnamectl set-hostname barbican```
-4. Update /etc/hosts on both controller and barbican
+4. Update /etc/hosts on both controller and barbican (use your own IPs, example below)
 ```
 [root@controller ~(keystone_admin)]# cat /etc/hosts
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
