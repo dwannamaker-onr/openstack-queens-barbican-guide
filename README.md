@@ -15,13 +15,12 @@
 5. Disable selinux enforcement: ```setenforce 0```
 6. Make Selinux Change Permanent:  ```sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config```
 7. ```systemctl disable NetworkManager```
-8. ```systemctl stop NetworkManager```
-9. ```systemctl enable network```
-10. ```systemctl disable firewalld```
-11. ```systemctl stop firewalld```
-12. ```hostnamectl set-hostname controller```
-13. ```yum install -y openstack-packstack```
-14. ```packstack --allinone``` _(Optional: <a href=https://www.rdoproject.org/networking/neutron-with-existing-external-network/>Configure External Networking</a>)_
+8. ```systemctl enable network```
+9. ```systemctl disable firewalld```
+10. ```hostnamectl set-hostname controller```
+11. ```yum install -y openstack-packstack```
+12. Reboot
+13. ```packstack --allinone``` _(Optional: <a href=https://www.rdoproject.org/networking/neutron-with-existing-external-network/>Configure External Networking</a>)_
 # Configuring Barbican Keystone Hooks
 
 ```
