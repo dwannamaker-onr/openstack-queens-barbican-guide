@@ -49,8 +49,8 @@ openstack endpoint create --region RegionOne key-manager admin http://barbican:9
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 
-172.16.9.168 controller controller.localdomain
-172.16.9.171 barbican barbican.localdomain
+172.16.9.164 controller controller.localdomain
+172.16.9.178 barbican barbican.localdomain
 ```
 5. Disable Firewall _(Optional: Configure firewall, but this is a PoC)_
 ```
@@ -68,8 +68,8 @@ systemctl stop firewalld
 In this PoC we are going to use a separate database for Barbican.  Barbican's database should be protected in production and should not be shared with other applications, even though we're already running SQL for the controller.  
 
 1. ```yum -y install mariadb mariadb-server```
-2. ```systemctl enable mariadb-server```
-3. ```systemctl start mariadb-server```
+2. ```systemctl enable mariadb```
+3. ```systemctl start mariadb```
 
 ### Configure Barbican's Database and DB User
 1. ```mysql -u root```
@@ -107,7 +107,7 @@ project_name = services
 user_domain_id = default
 project_domain_id = default
 username = barbican
-password = barbicanpassword
+password = barbican
 ```
 2. Enable Barbican API on Boot ```systemctl enable openstack-barbican-api```
 3. Start the Barbican API ```systemctl start openstack-barbican-api```
