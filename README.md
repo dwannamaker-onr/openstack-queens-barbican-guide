@@ -177,9 +177,20 @@ openstack volume type create --encryption-provider luks \
 ```openstack volume create --size 1 --type LUKS 'encrypted volume'```
 
 # Test Volume Encryption
+## Create a Test Instance
+```openstack server create --flavor 1 --image cirros test-instance```
 
 ## Mount Unencrypted Volume and Write Data
+1. ```openstack server add volume test-instance 'unencrypted volume'```
+2. Open VNC Console to test-instance
+3. Log into Cirros with user: cirros / password = cubswin:)
+4. Switch user to root: ```sudo su -```
+5. Write some clear text to volume: ```echo "test data" > /dev/vdb```
+6. Verify you can read data within OS: ```head -n1 /dev/vdb```
 
 ## Mount Encrypted Volume and Write Data
+1. ```openstack server add volume test-instance 'encrypted volume'```
+2. Write some clear text to volume: ```echo "test data" > /dev/vdc```
+3. Verify you can read data within OS: ```head -n1 /dev/vdc```
 
 ## Check Volumes for Data
