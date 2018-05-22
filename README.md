@@ -115,7 +115,7 @@ password = barbican
 
 ### Fix Bug with Barbican RDO Package
 There's currently a bug that prevents the RDO barbican package from creating /run/barbican after a reboot.
-1. Create /etc/tmpfiles.d/barbican.conf
+1. Create /etc/tmpfiles.d/barbican.conf with the following contents:
 ```
 d /var/run/barbican 0755 barbican barbican -
 ```
