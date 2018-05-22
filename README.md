@@ -194,3 +194,9 @@ openstack volume type create --encryption-provider luks \
 3. Verify you can read data within OS: ```head -n1 /dev/vdc```
 
 ## Check Volumes for Data
+On the controller:
+1. ```openstack volume list``` (Make note of volume IDs)
+2. ```head -n1 /dev/mapper/cinder--volumes-volume--<unencrypted volume id>```
+3. You should see the string: *test data*
+4. ```head -n1 /dev/mapper/cinder--volumes-volume--<encrypted volume id>```
+5. You should see the LUKS encrypted volume header
